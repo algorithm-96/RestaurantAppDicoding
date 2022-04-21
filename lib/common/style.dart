@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-var colorPrimary = Color(0xff944E6C);
+const colorPrimary = Color(0xff944E6C);
 const colorGrey = Color(0xffBDBDBD);
 const colorWhiteGrey = Color(0xffF6F6F6);
 const bgColorWhite = Color(0xffFAFAFA);
@@ -13,7 +13,7 @@ final textWithOpacity = TextStyle(
   color: Colors.black.withOpacity(0.4),
   fontSize: 12,
 );
-final textStyleSubTitle = TextStyle(
+const textStyleSubTitle = TextStyle(
   color: Colors.white,
   fontSize: 18,
   fontWeight: FontWeight.w400,

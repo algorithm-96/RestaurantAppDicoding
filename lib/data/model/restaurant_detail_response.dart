@@ -1,5 +1,3 @@
-import 'package:restaurant_sub2_app/data/model/restaurant_list_response.dart';
-
 class RestaurantDetailResult {
   RestaurantDetailResult({
     required this.restaurants,
@@ -11,7 +9,6 @@ class RestaurantDetailResult {
       RestaurantDetailResult(
         restaurants: DetailRestaurant.fromJson(json["restaurant"]),
       );
-
 }
 
 class DetailRestaurant {

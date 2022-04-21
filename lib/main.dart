@@ -29,9 +29,9 @@ class MyApp extends StatelessWidget {
       child: MaterialApp(
         title: 'RestaurantApp',
         theme: ThemeData(),
-        home: FirstScreen(),
+        home: const FirstScreen(),
         routes: {
-          FirstScreen.routeName: (context) => FirstScreen(),
+          FirstScreen.routeName: (context) => const FirstScreen(),
           SecondScreen.routeName: (context) => SecondScreen(
                 restaurant:
                     ModalRoute.of(context)?.settings.arguments as Restaurant,

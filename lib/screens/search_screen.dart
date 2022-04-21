@@ -3,7 +3,6 @@ import 'package:provider/provider.dart';
 import 'package:restaurant_sub2_app/provider/search_restaurant_provider.dart';
 import 'package:restaurant_sub2_app/utils/result_state.dart';
 import 'package:restaurant_sub2_app/widgets/card_result.dart';
-import 'package:restaurant_sub2_app/widgets/restaurant_card.dart';
 
 class SearchScreen extends StatefulWidget {
   static const routeName = '/search_screen';
@@ -15,7 +14,7 @@ class SearchScreen extends StatefulWidget {
 }
 
 class _SearchScreenState extends State<SearchScreen> {
-  String query = '';
+  String queries = '';
   final TextEditingController _searchController = TextEditingController();
 
   @override
@@ -101,7 +100,7 @@ class _SearchScreenState extends State<SearchScreen> {
               onChanged: (String query) {
                 if (query.isNotEmpty) {
                   setState(() {
-                    query = query;
+                    queries = query;
                   });
                   state.fetchSearchRestaurants(query);
                 }
