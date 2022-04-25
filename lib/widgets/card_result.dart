@@ -4,7 +4,7 @@ import 'package:restaurant_sub2_app/data/model/restaurant_list_response.dart';
 
 class CardResult extends StatelessWidget {
   final Restaurant restaurant;
-  const CardResult({required this.restaurant});
+  const CardResult({Key? key, required this.restaurant}) : super(key: key);
 
   static const String _baseUrlImage =
       'https://restaurant-api.dicoding.dev/images/small/';
@@ -19,7 +19,7 @@ class CardResult extends StatelessWidget {
         mainAxisSize: MainAxisSize.min,
         children: [
           Text(restaurant.rating),
-          Icon(
+          const Icon(
             Icons.star,
             color: colorPrimary,
           )

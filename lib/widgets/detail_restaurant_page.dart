@@ -6,7 +6,8 @@ class DetailRestaurantPage extends StatelessWidget {
   final String _urlPict = 'https://restaurant-api.dicoding.dev/images/large/';
 
   final DetailRestaurant restaurant;
-  DetailRestaurantPage({required this.restaurant});
+  const DetailRestaurantPage({Key? key, required this.restaurant})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -52,7 +53,7 @@ class DetailRestaurantPage extends StatelessWidget {
                                   Navigator.pop(context);
                                 },
                                 icon: const Icon(Icons.arrow_back))),
-                        FavoriteButton()
+                        const FavoriteButton()
                       ],
                     ),
                   ),
@@ -98,7 +99,7 @@ class DetailRestaurantPage extends StatelessWidget {
                               decoration: BoxDecoration(
                                   color: colorPrimary.withOpacity(0.2),
                                   borderRadius: BorderRadius.circular(8)),
-                              child: Icon(
+                              child: const Icon(
                                 Icons.map_sharp,
                                 color: colorPrimary,
                               )),
@@ -134,7 +135,7 @@ class DetailRestaurantPage extends StatelessWidget {
                             decoration: BoxDecoration(
                                 color: colorPrimary.withOpacity(0.2),
                                 borderRadius: BorderRadius.circular(8)),
-                            child: Icon(
+                            child: const Icon(
                               Icons.star,
                               color: colorPrimary,
                             ),
@@ -186,7 +187,7 @@ class DetailRestaurantPage extends StatelessWidget {
                             decoration: BoxDecoration(
                                 color: colorPrimary.withOpacity(0.2),
                                 borderRadius: BorderRadius.circular(8)),
-                            child: Icon(
+                            child: const Icon(
                               Icons.timer,
                               color: colorPrimary,
                             ),
@@ -204,7 +205,7 @@ class DetailRestaurantPage extends StatelessWidget {
                                   style: textWithOpacity,
                                 ),
                                 const Flexible(
-                                    child: const Text(
+                                    child: Text(
                                   "10 - 12",
                                   style: TextStyle(fontSize: 10),
                                 ))
@@ -238,7 +239,7 @@ class DetailRestaurantPage extends StatelessWidget {
                             decoration: BoxDecoration(
                                 color: colorPrimary.withOpacity(0.2),
                                 borderRadius: BorderRadius.circular(8)),
-                            child: Icon(
+                            child: const Icon(
                               Icons.location_pin,
                               color: colorPrimary,
                             ),
@@ -284,13 +285,13 @@ class DetailRestaurantPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
-              children: [
+              children: const [
                 Icon(
                   Icons.food_bank,
                   color: colorPrimary,
                 ),
-                const SizedBox(width: 4),
-                const Text("Foods"),
+                SizedBox(width: 4),
+                Text("Foods"),
               ],
             ),
           ),
@@ -298,13 +299,13 @@ class DetailRestaurantPage extends StatelessWidget {
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: Row(
-              children: [
+              children: const [
                 Icon(
                   Icons.local_drink,
                   color: colorPrimary,
                 ),
-                const SizedBox(width: 4),
-                const Text("Drinks"),
+                SizedBox(width: 4),
+                Text("Drinks"),
               ],
             ),
           ),
@@ -348,6 +349,8 @@ listMenu(List<dynamic> menus) {
 }
 
 class FavoriteButton extends StatefulWidget {
+  const FavoriteButton({Key? key}) : super(key: key);
+
   @override
   _FavoriteButtonState createState() => _FavoriteButtonState();
 }

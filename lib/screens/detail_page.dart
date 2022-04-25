@@ -6,12 +6,12 @@ import 'package:restaurant_sub2_app/provider/detail_restaurant_provider.dart';
 import 'package:restaurant_sub2_app/utils/result_state.dart';
 import 'package:restaurant_sub2_app/widgets/detail_restaurant_page.dart';
 
-class SecondScreen extends StatelessWidget {
+class DetailPage extends StatelessWidget {
   static const routeName = "/second_screen";
 
   final Restaurant restaurant;
 
-  const SecondScreen({required this.restaurant});
+  const DetailPage({Key? key, required this.restaurant}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {

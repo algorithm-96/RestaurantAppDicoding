@@ -4,16 +4,16 @@ import 'package:restaurant_sub2_app/provider/search_restaurant_provider.dart';
 import 'package:restaurant_sub2_app/utils/result_state.dart';
 import 'package:restaurant_sub2_app/widgets/card_result.dart';
 
-class SearchScreen extends StatefulWidget {
+class SearchPage extends StatefulWidget {
   static const routeName = '/search_screen';
 
-  const SearchScreen({Key? key}) : super(key: key);
+  const SearchPage({Key? key}) : super(key: key);
 
   @override
-  State<SearchScreen> createState() => _SearchScreenState();
+  State<SearchPage> createState() => _SearchPageState();
 }
 
-class _SearchScreenState extends State<SearchScreen> {
+class _SearchPageState extends State<SearchPage> {
   String queries = '';
   final TextEditingController _searchController = TextEditingController();
 
