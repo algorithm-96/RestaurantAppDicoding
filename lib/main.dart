@@ -1,14 +1,37 @@
+import 'dart:io';
+
+import 'package:android_alarm_manager_plus/android_alarm_manager_plus.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_local_notifications/flutter_local_notifications.dart';
 import 'package:provider/provider.dart';
+import 'package:restaurant_sub2_app/common/navigation.dart';
 import 'package:restaurant_sub2_app/data/api/api_service.dart';
+import 'package:restaurant_sub2_app/data/database/database_helper.dart';
 import 'package:restaurant_sub2_app/data/model/restaurant_list_response.dart';
+import 'package:restaurant_sub2_app/provider/database_provider.dart';
 import 'package:restaurant_sub2_app/provider/list_restaurant_provider.dart';
 import 'package:restaurant_sub2_app/provider/search_restaurant_provider.dart';
-import 'package:restaurant_sub2_app/screens/first_screen.dart';
-import 'package:restaurant_sub2_app/screens/search_screen.dart';
-import 'package:restaurant_sub2_app/screens/second_screen.dart';
+import 'package:restaurant_sub2_app/screens/home_page.dart';
+import 'package:restaurant_sub2_app/screens/search_page.dart';
+import 'package:restaurant_sub2_app/screens/detail_page.dart';
+import 'package:restaurant_sub2_app/utils/background_service.dart';
+import 'package:restaurant_sub2_app/utils/notification_helper.dart';
 
-void main() {
+final FlutterLocalNotificationsPlugin flutterLocalNotificationsPlugin =
+    FlutterLocalNotificationsPlugin();
+
+Future<void> main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+
+  final NotificationHelper _notificationHelper = NotificationHelper();
+  final BackgroundService _service = BackgroundService();
+
+  _service.initializeIsolate();
+
+  if (Platform.isAndroid) {
+    await AndroidAlarmManager.initialize();
+  }
+  await _notificationHelper.initNotifications(flutterLocalNotificationsPlugin);
   runApp(const MyApp());
 }
 
@@ -24,19 +47,23 @@ class MyApp extends StatelessWidget {
         ),
         ChangeNotifierProvider<SearchRestaurantProvider>(
           create: (_) => SearchRestaurantProvider(apiService: ApiService()),
+        ),
+         ChangeNotifierProvider<DatabaseProvider>(
+          create: (_) => DatabaseProvider(databaseHelper: DatabaseHelper()),
         )
       ],
       child: MaterialApp(
         title: 'RestaurantApp',
+        navigatorKey: navigatorKey,
         theme: ThemeData(),
-        home: const FirstScreen(),
+        home: const HomePage(),
         routes: {
-          FirstScreen.routeName: (context) => const FirstScreen(),
-          SecondScreen.routeName: (context) => SecondScreen(
+          HomePage.routeName: (context) => const HomePage(),
+         DetailPage.routeName: (context) => DetailPage(
                 restaurant:
                     ModalRoute.of(context)?.settings.arguments as Restaurant,
               ),
-          SearchScreen.routeName: (context) => SearchScreen()
+          SearchPage.routeName: (context) => const SearchPage()
         },
       ),
     );

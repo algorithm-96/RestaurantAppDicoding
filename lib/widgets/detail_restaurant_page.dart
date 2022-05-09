@@ -1,6 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:restaurant_sub2_app/common/style.dart';
 import 'package:restaurant_sub2_app/data/model/restaurant_detail_response.dart';
+import 'package:restaurant_sub2_app/provider/database_provider.dart';
+import 'package:restaurant_sub2_app/utils/convert_data.dart';
 
 class DetailRestaurantPage extends StatelessWidget {
   final String _urlPict = 'https://restaurant-api.dicoding.dev/images/large/';
@@ -18,7 +21,7 @@ class DetailRestaurantPage extends StatelessWidget {
           SizedBox(
             height: MediaQuery.of(context).size.height / 2.6,
             child: Stack(
-              children: [
+              children: <Widget>[
                 SizedBox(
                   height: MediaQuery.of(context).size.height / 3,
                   width: MediaQuery.of(context).size.width,
@@ -53,7 +56,47 @@ class DetailRestaurantPage extends StatelessWidget {
                                   Navigator.pop(context);
                                 },
                                 icon: const Icon(Icons.arrow_back))),
-                        const FavoriteButton()
+                        Consumer<DatabaseProvider>(
+                            builder: (context, value, child) {
+                          return FutureBuilder<bool>(
+                              future: value.isBookmarked(restaurant.id),
+                              builder: (context, snapshot) {
+                                var isBookmarked = snapshot.data ?? false;
+                                return isBookmarked
+                                    ? Container(
+                                        height: 40,
+                                        width: 40,
+                                        decoration: BoxDecoration(
+                                            color: colorGrey.withOpacity(0.8),
+                                            borderRadius:
+                                                BorderRadius.circular(8)),
+                                        child: IconButton(
+                                          icon: const Icon(
+                                            Icons.favorite,
+                                            color: Colors.pink,
+                                          ),
+                                          onPressed: () => value
+                                              .removeRestaurant(restaurant.id),
+                                        ),
+                                      )
+                                    : IconButton(
+                                        icon: Container(
+                                          height: 40,
+                                          width: 40,
+                                          decoration: BoxDecoration(
+                                              color: colorGrey.withOpacity(0.8),
+                                              borderRadius:
+                                                  BorderRadius.circular(8)),
+                                          child: const Icon(
+                                            Icons.favorite_border,
+                                            color: Colors.black,
+                                          ),
+                                        ),
+                                        onPressed: () => value.addRestaurant(
+                                            convertData(restaurant)),
+                                      );
+                              });
+                        }),
                       ],
                     ),
                   ),
@@ -346,30 +389,4 @@ listMenu(List<dynamic> menus) {
       ),
     ),
   );
-}
-
-class FavoriteButton extends StatefulWidget {
-  const FavoriteButton({Key? key}) : super(key: key);
-
-  @override
-  _FavoriteButtonState createState() => _FavoriteButtonState();
-}
-
-class _FavoriteButtonState extends State<FavoriteButton> {
-  bool isFavorite = false;
-
-  @override
-  Widget build(BuildContext context) {
-    return IconButton(
-      icon: Icon(
-        isFavorite ? Icons.favorite : Icons.favorite_border,
-        color: Colors.red,
-      ),
-      onPressed: () {
-        setState(() {
-          isFavorite = !isFavorite;
-        });
-      },
-    );
-  }
 }

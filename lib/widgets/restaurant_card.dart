@@ -1,18 +1,18 @@
 import 'package:flutter/material.dart';
 import 'package:restaurant_sub2_app/data/model/restaurant_list_response.dart';
-import 'package:restaurant_sub2_app/screens/second_screen.dart';
+import 'package:restaurant_sub2_app/screens/detail_page.dart';
 
 class RestaurantCard extends StatelessWidget {
   final Restaurant restaurant;
   static const String _baseUrlImage =
       'https://restaurant-api.dicoding.dev/images/large/';
-  RestaurantCard({required this.restaurant});
+  const RestaurantCard({Key? key, required this.restaurant}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: () {
-        Navigator.pushNamed(context, SecondScreen.routeName,
+        Navigator.pushNamed(context, DetailPage.routeName,
             arguments: restaurant);
       },
       child: Padding(

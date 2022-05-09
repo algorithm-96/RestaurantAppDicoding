@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
+import 'package:restaurant_sub2_app/common/navigation.dart';
 import 'package:restaurant_sub2_app/common/style.dart';
 import 'package:restaurant_sub2_app/data/model/restaurant_list_response.dart';
+import 'package:restaurant_sub2_app/screens/detail_page.dart';
 
 class CardResult extends StatelessWidget {
   final Restaurant restaurant;
@@ -12,6 +14,9 @@ class CardResult extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ListTile(
+      onTap: () {
+        Navigation.intentWithData(DetailPage.routeName, restaurant);
+      },
       leading: Image.network(_baseUrlImage + restaurant.pictureId),
       title: Text(restaurant.name),
       subtitle: Text(restaurant.city),

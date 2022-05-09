@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant_sub2_app/provider/list_restaurant_provider.dart';
+import 'package:restaurant_sub2_app/screens/search_page.dart';
 import 'package:restaurant_sub2_app/utils/result_state.dart';
 import 'package:restaurant_sub2_app/widgets/restaurant_card.dart';
 
@@ -18,6 +19,17 @@ class RestaurantPage extends StatelessWidget {
         } else {
           if (value.resultState == ResultState.hasData) {
             return Scaffold(
+              appBar: AppBar(
+                title: const Text('Restaurant'),
+                actions: [
+                  IconButton(
+                    icon: const Icon(Icons.search),
+                    onPressed: () {
+                      Navigator.pushNamed(context, SearchPage.routeName);
+                    },
+                  ),
+                ],
+              ),
               body: GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                   crossAxisCount: 2,
