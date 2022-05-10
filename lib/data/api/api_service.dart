@@ -7,11 +7,11 @@ import '../model/restaurant_list_response.dart';
 
 class ApiService {
   static const String _throw = 'Failed load Data';
-  static const String _baseUrl = 'https://restaurant-api.dicoding.dev/';
-  static const String _list = 'list';
+  static const String baseUrl = 'https://restaurant-api.dicoding.dev/';
+  static const String list = 'list';
 
   Future<RestauranListtResult> getListRestaurant() async {
-    final response = await http.get(Uri.parse(_baseUrl + _list));
+    final response = await http.get(Uri.parse(baseUrl + list));
 
     if (response.statusCode == 200) {
       return RestauranListtResult.fromJson(jsonDecode(response.body));
@@ -21,7 +21,7 @@ class ApiService {
   }
 
   Future<RestaurantSearchResult> getSearchRestaurant(String query) async {
-    final response = await http.get(Uri.parse(_baseUrl + 'search?q=' + query));
+    final response = await http.get(Uri.parse(baseUrl + 'search?q=' + query));
     if (response.statusCode == 200) {
       return RestaurantSearchResult.fromJson(jsonDecode(response.body));
     } else {
@@ -30,7 +30,7 @@ class ApiService {
   }
 
   Future<RestaurantDetailResult> getDetailRestaurant(String id) async {
-    final response = await http.get(Uri.parse(_baseUrl + 'detail/' + id));
+    final response = await http.get(Uri.parse(baseUrl + 'detail/' + id));
     if (response.statusCode == 200) {
       return RestaurantDetailResult.fromJson(json.decode(response.body));
     } else {

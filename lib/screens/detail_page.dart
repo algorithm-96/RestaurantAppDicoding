@@ -11,7 +11,7 @@ class DetailPage extends StatelessWidget {
 
   final Restaurant restaurant;
 
-   DetailPage({required this.restaurant});
+   const DetailPage({required this.restaurant});
 
   @override
   Widget build(BuildContext context) {

@@ -5,7 +5,6 @@ import 'package:restaurant_sub2_app/provider/preferences_provider.dart';
 import 'package:restaurant_sub2_app/provider/scheduling_provider.dart';
 import 'package:restaurant_sub2_app/screens/bookmark_page.dart';
 import 'package:restaurant_sub2_app/screens/detail_page.dart';
-import 'package:restaurant_sub2_app/screens/search_page.dart';
 import 'package:restaurant_sub2_app/screens/setting_page.dart';
 import 'package:restaurant_sub2_app/utils/notification_helper.dart';
 import 'package:restaurant_sub2_app/widgets/restaurant_page.dart';

@@ -42,7 +42,7 @@ class DatabaseHelper {
     await db!.insert(_tableBookmark, restaurant.toJson());
   }
 
-   Future<List<Restaurant>> getRestaurant() async {
+  Future<List<Restaurant>> getRestaurant() async {
     final db = await database;
     List<Map<String, dynamic>> results = await db!.query(_tableBookmark);
 
