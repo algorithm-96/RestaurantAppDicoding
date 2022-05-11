@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:http/http.dart';
 import 'package:provider/provider.dart';
 import 'package:restaurant_sub2_app/data/api/api_service.dart';
 import 'package:restaurant_sub2_app/data/model/restaurant_list_response.dart';
@@ -17,7 +18,7 @@ class DetailPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return ChangeNotifierProvider<DetailRestaurantProvider>(
       create: (_) => DetailRestaurantProvider(
-          apiService: ApiService(), restaurant: restaurant.id),
+          apiService: ApiService(Client()), restaurant: restaurant.id),
       child: Scaffold(
         appBar: AppBar(
           title: const Text("Detail Restaurant"),

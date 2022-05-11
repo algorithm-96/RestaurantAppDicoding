@@ -9,15 +9,14 @@ import 'call_api_test.mocks.dart';
 @GenerateMocks([http.Client])
 void main() {
   group('Fetch List Restaurant', () {
-    test('returns an Restaurant if the http call completes successfully', () async {
+    test('returns an Restaurant if the http call completes successfully',
+        () async {
       final client = MockClient();
 
       when(client.get(Uri.parse(ApiService.baseUrl + ApiService.list)))
-          .thenAnswer((_) async => http.Response(
-          '{"restaurants":[]}',
-          200
-      ));
-      expect(await ApiService().getListRestaurant(), isA<RestauranListtResult>());
+          .thenAnswer((_) async => http.Response('{"restaurants":[]}', 200));
+      expect(await ApiService(client).getListRestaurant(),
+          isA<RestauranListtResult>());
     });
   });
 }
